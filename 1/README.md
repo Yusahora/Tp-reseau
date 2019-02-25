@@ -105,4 +105,5 @@ tcpdump: listening on enp0s9, link-type EN10MB (Ethernet), capture size 262144 b
 10 packets received by filter
 0 packets dropped by kernel`
 
+![alt text](/1/screens/ping.png "Whireshark")
 
