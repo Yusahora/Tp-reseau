@@ -136,4 +136,48 @@ tcpdump: listening on enp0s8, link-type EN10MB (Ethernet), capture size 262144 b
 
 ![alt text](/1/screens/ping2.png "Whireshark")
 
+##udp
+
+`sudo firewall-cmd --add-port=8888/udp --permanent
+[sudo] Mot de passe de felix : 
+success`
+
+* on ouvre le port 8888 en udp sur client1
+
+`sudo firewall-cmd --add-port=8888/tcp --permanent
+success
+[felix@localhost ~]$ sudo firewall-cmd --reload`
+
+* on fait pareille en tcp pour la suite du tp puis on reload le firewall pour que les changements sois pris en compte
+
+![alt text](/1/screens/chat.png "Whireshark")
+
+* le chat fonctionne
+
+` ss -unp
+Recv-Q Send-Q Local Address:Port               Peer Address:Port              
+0      0          10.1.1.3:47110                  10.1.1.2:8888                users:(("nc",pid=1442,fd=3))`
+
+* ss sur client2
+
+`ss -unp
+Recv-Q Send-Q Local Address:Port               Peer Address:Port              
+0      0          10.1.1.2:8888                   10.1.1.3:47110               users:(("nc",pid=9440,fd=4))`
+
+* ss sur client1
+
+![alt text](/1/screens/nc-udp.png "Whireshark")
+
+* On peut voir la connexion en udp
+
+![alt text](/1/screens/chattcp.png "Whireshark")
+
+* Le chat fonctionne bien en tcp
+
+![alt text](/1/screens/nc-tcp.png "Whireshark")
+
+* On peut voir la mise en place de la connexion tcp avec le syn ack
+
+
+
 
