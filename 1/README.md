@@ -191,3 +191,14 @@ Ncat: No route to host.`
 * Client2 ne peut plus se connecter en tcp à client1
 
 ![alt text](/1/screens/firewall.png "Whireshark")
+
+* Le firewall a bien empêché la connexion
+
+# III. Routage statique simple 
+
+`sudo sysctl -w net.ipv4.ip_forward=1
+[sudo] Mot de passe de felix : 
+net.ipv4.ip_forward = 1`
+
+* On active le forward d'IP sur client1
+
