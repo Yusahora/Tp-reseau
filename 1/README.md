@@ -202,3 +202,16 @@ net.ipv4.ip_forward = 1`
 
 * On active le forward d'IP sur client1
 
+`sudo ip route add 10.1.2.0/30 via 10.1.2.2 dev enp0s8`
+
+* on ajoute la route vers net2 
+
+`ping 10.1.2.2
+PING 10.1.2.2 (10.1.2.2) 56(84) bytes of data.
+64 bytes from 10.1.2.2: icmp_seq=1 ttl=64 time=0.915 ms
+64 bytes from 10.1.2.2: icmp_seq=2 ttl=64 time=0.629 ms
+64 bytes from 10.1.2.2: icmp_seq=3 ttl=64 time=0.730 ms
+64 bytes from 10.1.2.2: icmp_seq=4 ttl=64 time=0.984 ms`
+
+* On peut bien ping sur net2 avec client2
+
