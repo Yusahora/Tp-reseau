@@ -107,3 +107,33 @@ tcpdump: listening on enp0s9, link-type EN10MB (Ethernet), capture size 262144 b
 
 ![alt text](/1/screens/ping.png "Whireshark")
 
+## Communication simple entre deux machines
+
+## 1. Mise en place
+
+`ping -c 4 10.1.1.3
+PING 10.1.1.3 (10.1.1.3) 56(84) bytes of data.
+64 bytes from 10.1.1.3: icmp_seq=1 ttl=64 time=0.928 ms
+64 bytes from 10.1.1.3: icmp_seq=2 ttl=64 time=0.699 ms
+64 bytes from 10.1.1.3: icmp_seq=3 ttl=64 time=0.841 ms
+64 bytes from 10.1.1.3: icmp_seq=4 ttl=64 time=0.589 ms`
+
+* On ping client2 après avoir vider la table arp
+
+`ip neigh show
+10.1.1.3 dev enp0s8 lladdr 08:00:27:5c:6c:40 REACHABLE
+10.1.2.1 dev enp0s9 lladdr 0a:00:27:00:00:02 REACHABLE`
+
+* Client2 est maintenant dans notre table arp
+
+
+`sudo tcpdump -i enp0s8 -w ping2.pcap
+tcpdump: listening on enp0s8, link-type EN10MB (Ethernet), capture size 262144 bytes
+^C10 packets captured
+10 packets received by filter
+0 packets dropped by kernel`
+
+
+![alt text](/1/screens/ping2.png "Whireshark")
+
+
