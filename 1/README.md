@@ -178,6 +178,16 @@ Recv-Q Send-Q Local Address:Port               Peer Address:Port
 
 * On peut voir la mise en place de la connexion tcp avec le syn ack
 
+`sudo firewall-cmd --remove-port=8888/tcp --permanent
+success
+sudo firewall-cmd --reload
+success`
 
+* on enlève le tcp de firewall et on le reload
 
+`nc  10.1.1.2 8888
+Ncat: No route to host.`
 
+* Client2 ne peut plus se connecter en tcp à client1
+
+![alt text](/1/screens/firewall.png "Whireshark")
