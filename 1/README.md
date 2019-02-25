@@ -1,1 +1,15 @@
+# Sommaire
 
+* [I. Exploration du réseau d'une machine CentOS](#i-exploration-du-réseau-dune-machine-centos)
+  * [1. Mise en place](#1-mise-en-place)
+  * [2. Basics](#2-basics)
+    * [Routes](#routes)
+    * [Table ARP](#table-arp)
+    * [Capture réseau](#capture-réseau)
+* [II. Communication simple entre deux machines](#ii-communication-simple-entre-deux-machines)
+  * [1. Mise en place](#1-mise-en-place-1)
+  * [2. Basics](#2-basics-1)
+    * [`ping` et ARP](#ping-et-arp)
+    * [`netcat` : TCP et UDP](#netcat)
+  * [3. Bonus : ARP spoofing](#3-bonus--arp-spoofing)
+* [III. Routage statique simple](#iii-routage-statique-simple)
