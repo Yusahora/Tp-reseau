@@ -39,7 +39,7 @@
     * `ping 10.1.2.1`
     * ça fonctionne
     
-## 1. Basics
+## 2. Basics
 
 `ip route show
 10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
@@ -110,6 +110,41 @@ tcpdump: listening on enp0s9, link-type EN10MB (Ethernet), capture size 262144 b
 ## Communication simple entre deux machines
 
 ## 1. Mise en place
+
+    * Configuration d'une nouvelle ip statique
+    ```
+    [felix@client2 ~]$ cat /etc/sysconfig/network-scripts/ifcfg-enp0s8
+    TYPE=Ethernet
+    BOOTPROTO=static
+
+    NAME=enp0s8
+    DEVICE=enp0s8
+
+    ONBOOT=yes
+
+    IPADDR=10.1.1.3
+    NETMASK=255.255.255.0
+    ```
+
+    * On valide
+        ```
+        ifdown enp0s8
+        ifup enp0s8
+        ```
+
+    * Changement du nom de domaine : 
+    ```
+    sudo hostname client2.tp1.b2
+    ```
+
+    * Edition du fichier hosts de client2 :
+    ```
+    [felix@client2 ~]$ cat /etc/hosts
+    127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+    ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+    10.1.1.3    localhost client2.tp1.b2
+
+## 2. Basics
 
 `ping -c 4 10.1.1.3
 PING 10.1.1.3 (10.1.1.3) 56(84) bytes of data.
