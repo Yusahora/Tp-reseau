@@ -76,7 +76,7 @@ rtt min/avg/max/mdev = 15.144/17.390/18.255/1.311 ms`
 * C'est bon le nat est fonctionnel sur router1.
 
 * On met toute les interfaces de toutes les vms dans la zone trusted en ajoutant la ligne
-`ZONE=trusted` dans le fichier /etc/sysconfig/network-scripts/ifcfg-<interface voulue> sauf pour l'interface nat de route1 qui lui sera dans la zone public il suffit d'écrire `ZONE=public`.
+`ZONE=trusted` dans le fichier /etc/sysconfig/network-scripts/ifcfg-interface_voulue sauf pour l'interface nat de route1 qui lui sera dans la zone public il suffit d'écrire `ZONE=public`.
  
  * Il faut aussi activer le masquerading sur la zone public pour router1 il faut faire les commandes suivantes
  `sudo firewall-cmd --add-masquerade --zone=public --permanent
@@ -132,11 +132,11 @@ subnet 10.2.1.0 netmask 255.255.255.0 {
 * On démarre le serveur dhcp :
 `sudo systemctl start dhcpd`
 
-* Pour tester si il fonctionne on créé une vm avec un interface sur le réseau géré par notre dhcp avec la configuration suivante dans /etc/sysconfig/network-scripts/ifcfg-<interface> :
+* Pour tester si il fonctionne on créé une vm avec un interface sur le réseau géré par notre dhcp avec la configuration suivante dans /etc/sysconfig/network-scripts/ifcfg-interface :
 `TYPE="Ethernet"
 BOOTPROTO=dhcp
-NAME=<interface>
-DEVICE=<interface>
+NAME=interface
+DEVICE=interface
 ONBOOT="yes"
 
 GATEWAY=10.2.12.2
