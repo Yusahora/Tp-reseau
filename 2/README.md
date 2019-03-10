@@ -109,5 +109,43 @@ The document has moved
 
 * Ensuite on installe un server dhcp :
 `sudo yum install -y dhcp`
-## 2 Serveur DHCP
-## 2 Serveur DHCP
+
+* Puis on écrit dans /ect/dhcp/dhcpd.conf la config suivante :
+`# dhcpd.conf
+
+# option definitions common to all supported networks
+option domain-name "net1.tp2";
+
+default-lease-time 600;
+max-lease-time 7200;
+
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+authoritative;
+
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+
+subnet 10.2.1.0 netmask 255.255.255.0 {
+  range 10.2.1.50 10.2.1.70;
+  option domain-name "net1.tp2";
+  option routers 10.2.1.254;
+  option broadcast-address 10.2.1.255;
+}`
+
+* On démarre le serveur dhcp :
+`sudo systemctl start dhcpd`
+
+* Pour tester si il fonctionne on créé une vm avec un interface sur le réseau géré par notre dhcp avec la configuration suivante dans /etc/sysconfig/network-scripts/ifcfg-<interface> :
+`TYPE="Ethernet"
+BOOTPROTO=dhcp
+NAME=<interface>
+DEVICE=<interface>
+ONBOOT="yes"
+
+GATEWAY=10.2.12.2
+DNS1=8.8.8.8
+ZONE=public`
+
+* Il ne reste plus qu'a faire `sudo dhclient pour récuperer une ip qui normalement sera 10.2.1.50 car vous êtes le premier client dhcp et que c'est la première adresse adressable par le server dhcp dans cette configuration.
