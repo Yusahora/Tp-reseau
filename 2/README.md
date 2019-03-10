@@ -111,7 +111,7 @@ The document has moved
 `sudo yum install -y dhcp`
 
 * Puis on écrit dans /ect/dhcp/dhcpd.conf la config suivante :
-`# dhcpd.conf
+``# dhcpd.conf
 
 # option definitions common to all supported networks
 option domain-name "net1.tp2";
