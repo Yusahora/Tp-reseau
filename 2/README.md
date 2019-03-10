@@ -77,4 +77,37 @@ rtt min/avg/max/mdev = 15.144/17.390/18.255/1.311 ms`
 
 * On met toute les interfaces de toutes les vms dans la zone trusted en ajoutant la ligne
 `ZONE=trusted` dans le fichier /etc/sysconfig/network-scripts/ifcfg-<interface voulue> sauf pour l'interface nat de route1 qui lui sera dans la zone public il suffit d'écrire `ZONE=public`.
+ 
+ * Il faut aussi activer le masquerading sur la zone public pour router1 il faut faire les commandes suivantes
+ `sudo firewall-cmd --add-masquerade --zone=public --permanent
+  sudo firewall-cmd --reload`
+ 
+* Pour ne pas avoir de problème de DNS vous pouvez ajouter dans le même fichier la ligne `DNS1=8.8.8.8`
+ 
+* Puis pour avoir une route par défault qui vous permet d'atteindre internet ajouter aussi la ligne 'GATEWAY=10.2.12.2` il faut bien sur adapter l'adresse de la gateway a celle que vous utilisez.
+ 
+* Il ne manque plus qu'a faire :
+`sudo ifdown <interface voulue> 
+ sudo ifup <interface voulue>`
+ 
+ * Ces commandes permettent de recharger les configurations des cartes réseau pour prendre en compte les changements qui viennent d'être fait.
+ 
+* On vérifie que tout fonctionne bien en faisant :
+`curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>`
 
+* On à bien un retour donc tout fonctionne correctement.
+
+## 2 Serveur DHCP
+
+* Pour commencer on fait un clone de client1 que l'on va appeller dhcp1 et qui aura l'adresse ip `10.1.2.11`.
+
+* Ensuite on installe un server dhcp :
+`sudo yum install -y dhcp`
+## 2 Serveur DHCP
+## 2 Serveur DHCP
