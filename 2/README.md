@@ -10,6 +10,7 @@
   * [4. Serveur Web](#4-web-server)
 * [Bilan](#bilan)
 
+## I Mise en place du lab
 
 # 1. Routage statique
 
@@ -54,4 +55,9 @@ en faisant des captures.
  
 ![alt text](/2/screens/mac-enp0s3-r2.png "Whireshark")
  
+* On constate que les adresses mac on changer c'est le router qui s'en ai charger pour faire passer le trafic sur le réseau.
+
+## II NAT et services d'infra
+
+# 1 Mise en place du NAT
 
