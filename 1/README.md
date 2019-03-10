@@ -39,7 +39,7 @@
     * `ping 10.1.2.1`
     * ça fonctionne
     
-## 1. Basics
+## 2. Basics
 
 `ip route show
 10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
@@ -111,6 +111,41 @@ tcpdump: listening on enp0s9, link-type EN10MB (Ethernet), capture size 262144 b
 
 ## 1. Mise en place
 
+    * Configuration d'une nouvelle ip statique
+    ```
+    [felix@client2 ~]$ cat /etc/sysconfig/network-scripts/ifcfg-enp0s8
+    TYPE=Ethernet
+    BOOTPROTO=static
+
+    NAME=enp0s8
+    DEVICE=enp0s8
+
+    ONBOOT=yes
+
+    IPADDR=10.1.1.3
+    NETMASK=255.255.255.0
+    ```
+
+    * On valide
+        ```
+        ifdown enp0s8
+        ifup enp0s8
+        ```
+
+    * Changement du nom de domaine : 
+    ```
+    sudo hostname client2.tp1.b2
+    ```
+
+    * Edition du fichier hosts de client2 :
+    ```
+    [felix@client2 ~]$ cat /etc/hosts
+    127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+    ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+    10.1.1.3    localhost client2.tp1.b2
+
+## 2. Basics
+
 `ping -c 4 10.1.1.3
 PING 10.1.1.3 (10.1.1.3) 56(84) bytes of data.
 64 bytes from 10.1.1.3: icmp_seq=1 ttl=64 time=0.928 ms
@@ -178,6 +213,40 @@ Recv-Q Send-Q Local Address:Port               Peer Address:Port
 
 * On peut voir la mise en place de la connexion tcp avec le syn ack
 
+`sudo firewall-cmd --remove-port=8888/tcp --permanent
+success
+sudo firewall-cmd --reload
+success`
 
+* on enlève le tcp de firewall et on le reload
 
+`nc  10.1.1.2 8888
+Ncat: No route to host.`
+
+* Client2 ne peut plus se connecter en tcp à client1
+
+![alt text](/1/screens/firewall.png "Whireshark")
+
+* Le firewall a bien empêché la connexion
+
+# III. Routage statique simple 
+
+`sudo sysctl -w net.ipv4.ip_forward=1
+[sudo] Mot de passe de felix : 
+net.ipv4.ip_forward = 1`
+
+* On active le forward d'IP sur client1
+
+`sudo ip route add 10.1.2.0/30 via 10.1.2.2 dev enp0s8`
+
+* on ajoute la route vers net2 
+
+`ping 10.1.2.2
+PING 10.1.2.2 (10.1.2.2) 56(84) bytes of data.
+64 bytes from 10.1.2.2: icmp_seq=1 ttl=64 time=0.915 ms
+64 bytes from 10.1.2.2: icmp_seq=2 ttl=64 time=0.629 ms
+64 bytes from 10.1.2.2: icmp_seq=3 ttl=64 time=0.730 ms
+64 bytes from 10.1.2.2: icmp_seq=4 ttl=64 time=0.984 ms`
+
+* On peut bien ping sur net2 avec client2
 
