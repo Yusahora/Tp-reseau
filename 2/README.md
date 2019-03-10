@@ -46,6 +46,12 @@ en faisant des captures.
 
 `sudo tcpdump -i enp0s3 -w ping-enp0s3-r2.pcap`
 ![alt text](/2/screens/ping-enp0s3-r2.png "Whireshark")
+
+* Tram net12 
+![alt text](/2/screens/mac-enp0s8-r2.png "Whireshark")
  
+* Tram net 2
+ 
+![alt text](/2/screens/mac-enp0s3-r2.png "Whireshark")
  
 
