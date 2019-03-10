@@ -111,20 +111,15 @@ The document has moved
 `sudo yum install -y dhcp`
 
 * Puis on écrit dans /ect/dhcp/dhcpd.conf la config suivante :
-``# dhcpd.conf
-
-# option definitions common to all supported networks
+`
 option domain-name "net1.tp2";
 
 default-lease-time 600;
 max-lease-time 7200;
 
-# If this DHCP server is the official DHCP server for the local
-# network, the authoritative directive should be uncommented.
 authoritative;
 
-# Use this to send dhcp log messages to a different log file (you also
-# have to hack syslog.conf to complete the redirection).
+
 log-facility local7;
 
 subnet 10.2.1.0 netmask 255.255.255.0 {
@@ -132,7 +127,7 @@ subnet 10.2.1.0 netmask 255.255.255.0 {
   option domain-name "net1.tp2";
   option routers 10.2.1.254;
   option broadcast-address 10.2.1.255;
-}`
+}``
 
 * On démarre le serveur dhcp :
 `sudo systemctl start dhcpd`
