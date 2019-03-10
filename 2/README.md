@@ -42,10 +42,10 @@ PING server1 (10.2.2.10) 56(84) bytes of data.
 en faisant des captures.
 
 `sudo tcpdump -i enp0s8 -w ping-enp0s8-r2.pcap`
-![alt text](/2/screens/ping-enp0s8-r2.pcap "Whireshark")
+![alt text](/2/screens/ping-enp0s8-r2.png "Whireshark")
 
 `sudo tcpdump -i enp0s3 -w ping-enp0s3-r2.pcap`
-![alt text](/2/screens/ping-enp0s3-r2.pcap "Whireshark")
+![alt text](/2/screens/ping-enp0s3-r2.png "Whireshark")
  
  
 
