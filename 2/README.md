@@ -8,7 +8,6 @@
   * [2. Serveur DHCP](#2-dhcp-server)
   * [3. Serveur NTP](#3-ntp-server)
   * [4. Serveur Web](#4-web-server)
-* [Bilan](#bilan)
 
 # I Mise en place du lab
 
