@@ -92,7 +92,7 @@ rtt min/avg/max/mdev = 15.144/17.390/18.255/1.311 ms`
  * Ces commandes permettent de recharger les configurations des cartes réseau pour prendre en compte les changements qui viennent d'être fait.
  
 * On vérifie que tout fonctionne bien en faisant :
-`curl google.com
+`curl google.com`
 <HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
 <TITLE>301 Moved</TITLE></HEAD><BODY>
 <H1>301 Moved</H1>
