@@ -10,3 +10,5 @@
 ```
 
 * Pour mettre en place cette infra il faut donc un router, un switch par salle plus un switch auquel sont relier tout les switchs, il faut ensuite les 24 ordinateurs pour les employeés, les 5 serveurs et les 5 imprimantes, pour finir il faut 2 câbles par connexion car toute les connexions sont doublées.
+
+* [ ] [infra Gns3](https://github.com/Yusahora/Tp-reseau/edit/master/4/infraGns3.png)
